@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="16" cy="16" r="15" fill="#4A90E2"/>
+  
+  <!-- Speech bubbles representing language exchange -->
+  <path d="M10 10C8.9 10 8 10.9 8 12V16C8 17.1 8.9 18 10 18H12V21L15 18H18C19.1 18 20 17.1 20 16V12C20 10.9 19.1 10 18 10H10Z" fill="white"/>
+  <path d="M22 14C23.1 14 24 14.9 24 16V20C24 21.1 23.1 22 22 22H20V25L17 22H14C12.9 22 12 21.1 12 20V19H14V20H17.2L19 21.8V20H22V16H20V14H22Z" fill="white"/>
+  
+  <!-- T for Tandem -->
+  <path d="M14 13H16V15H14V13Z" fill="#4A90E2"/>
+</svg> 

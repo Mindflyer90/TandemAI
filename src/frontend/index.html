@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Tandem App</title>
+    <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/notifications.css">
+    <link rel="stylesheet" href="css/spinner.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Spinner -->
+    <div class="spinner-container">
+        <div class="spinner"></div>
+        <div class="spinner-text">Loading...</div>
+    </div>
+
+    <header>
+        <div class="container">
+            <h1>Language Tandem</h1>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#home" class="nav-link active" data-page="home">Home</a></li>
+                    <li><a href="#profile" class="nav-link" data-page="profile">Profile</a></li>
+                    <li><a href="#exercises" class="nav-link" data-page="exercises">Exercises</a></li>
+                    <li><a href="#progress" class="nav-link" data-page="progress">Progress</a></li>
+                    <li><a href="#cultural" class="nav-link" data-page="cultural">Cultural</a></li>
+                    <li><a href="docs.html" class="docs-link">Docs</a></li>
+                </ul>
+            </nav>
+            <div id="user-info">
+                <span id="current-user">Not logged in</span>
+                <button id="login-button">Login</button>
+                <button id="logout-button" style="display: none;">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Home Page -->
+        <section id="home-page" class="page active">
+            <h2>Welcome to Language Tandem</h2>
+            <p>Connect with a partner and learn languages together!</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Personalized Exercises</h3>
+                    <p>Flashcards, quizzes, and conversation prompts tailored to your interests and proficiency level.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Track Your Progress</h3>
+                    <p>Monitor your learning journey with streaks, points, and detailed statistics.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Cultural Immersion</h3>
+                    <p>Learn about cultural aspects, idioms, and fun facts related to your target language.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>AI-Powered Content</h3>
+                    <p>Benefit from AI-generated exercises and content that adapt to your learning needs.</p>
+                </div>
+            </div>
+            
+            <div class="cta-container">
+                <button id="get-started-btn" class="cta-button">Get Started</button>
+                <button id="find-partner-btn" class="cta-button secondary">Find a Partner</button>
+            </div>
+        </section>
+
+        <!-- Profile Page -->
+        <section id="profile-page" class="page">
+            <h2>Your Profile</h2>
+            
+            <div id="profile-form-container">
+                <form id="profile-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="native-language">Native Language</label>
+                        <select id="native-language" name="nativeLanguage" required>
+                            <option value="">Select language</option>
+                            <option value="english">English</option>
+                            <option value="spanish">Spanish</option>
+                            <option value="french">French</option>
+                            <option value="german">German</option>
+                            <option value="italian">Italian</option>
+                            <option value="japanese">Japanese</option>
+                            <option value="mandarin">Mandarin</option>
+                            <!-- Add more languages as needed -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="learning-language">Learning Language</label>
+                        <select id="learning-language" name="learningLanguage" required>
+                            <option value="">Select language</option>
+                            <option value="english">English</option>
+                            <option value="spanish">Spanish</option>
+                            <option value="french">French</option>
+                            <option value="german">German</option>
+                            <option value="italian">Italian</option>
+                            <option value="japanese">Japanese</option>
+                            <option value="mandarin">Mandarin</option>
+                            <!-- Add more languages as needed -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="proficiency-level">Proficiency Level</label>
+                        <select id="proficiency-level" name="proficiencyLevel" required>
+                            <option value="">Select level</option>
+                            <option value="beginner">Beginner (A1)</option>
+                            <option value="elementary">Elementary (A2)</option>
+                            <option value="intermediate">Intermediate (B1)</option>
+                            <option value="upperIntermediate">Upper Intermediate (B2)</option>
+                            <option value="advanced">Advanced (C1)</option>
+                            <option value="proficient">Proficient (C2)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interests">Interests</label>
+                        <input type="text" id="interests" name="interests" placeholder="e.g., travel, music, cooking, sports">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="learning-goals">Learning Goals</label>
+                        <textarea id="learning-goals" name="learningGoals" rows="3" placeholder="What do you want to achieve?"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="partner-id">Partner ID (optional)</label>
+                        <input type="text" id="partner-id" name="partnerId" placeholder="Enter your partner's user ID">
+                    </div>
+                    
+                    <button type="submit" class="cta-button">Save Profile</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Exercises Page -->
+        <section id="exercises-page" class="page">
+            <h2>Exercises</h2>
+            <div class="exercises-header">
+                <div class="filters">
+                    <select id="exercise-type-filter">
+                        <option value="all">All Types</option>
+                        <option value="flashcard">Flashcards</option>
+                        <option value="quiz">Quizzes</option>
+                        <option value="conversation">Conversation Prompts</option>
+                        <option value="pronunciation">Pronunciation Practice</option>
+                    </select>
+                    <select id="exercise-status-filter">
+                        <option value="all">All Status</option>
+                        <option value="new">New</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+                <button id="generate-exercises-btn" class="cta-button">Generate New Exercises</button>
+            </div>
+            
+            <div id="exercises-container">
+                <!-- Exercise cards will be dynamically generated here -->
+                <div class="loading">Loading exercises...</div>
+            </div>
+            
+            <!-- Exercise Modal -->
+            <div id="exercise-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <div id="exercise-detail-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Page -->
+        <section id="progress-page" class="page">
+            <h2>Your Progress</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Current Streak</h3>
+                    <p id="current-streak" class="stat-value">0</p>
+                    <p>days</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>Points</h3>
+                    <p id="total-points" class="stat-value">0</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>Exercises Completed</h3>
+                    <p id="exercises-completed" class="stat-value">0</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>Achievements</h3>
+                    <p id="achievements-count" class="stat-value">0</p>
+                </div>
+            </div>
+            
+            <h3>Recent Activity</h3>
+            <div id="activity-timeline">
+                <!-- Activity items will be dynamically generated here -->
+                <div class="loading">Loading activity...</div>
+            </div>
+            
+            <h3>Learning Analytics</h3>
+            <div class="analytics-container">
+                <div class="chart-container">
+                    <canvas id="progress-chart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="category-chart"></canvas>
+                </div>
+            </div>
+            
+            <div id="achievements-container">
+                <h3>Your Achievements</h3>
+                <div class="achievements-grid">
+                    <!-- Achievement cards will be dynamically generated here -->
+                    <div class="loading">Loading achievements...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cultural Page -->
+        <section id="cultural-page" class="page">
+            <h2>Cultural Learning</h2>
+            
+            <div class="cultural-tabs">
+                <button class="tab-button active" data-tab="notes">Cultural Notes</button>
+                <button class="tab-button" data-tab="idioms">Idioms</button>
+                <button class="tab-button" data-tab="fun-facts">Fun Facts</button>
+            </div>
+            
+            <div id="notes-tab" class="tab-content active">
+                <div class="content-header">
+                    <h3>Cultural Notes</h3>
+                    <button id="generate-notes-btn" class="cta-button small">Generate New Notes</button>
+                </div>
+                <div id="cultural-notes-container">
+                    <!-- Cultural notes will be dynamically generated here -->
+                    <div class="loading">Loading cultural notes...</div>
+                </div>
+            </div>
+            
+            <div id="idioms-tab" class="tab-content">
+                <div class="content-header">
+                    <h3>Idioms</h3>
+                    <button id="generate-idioms-btn" class="cta-button small">Generate New Idioms</button>
+                </div>
+                <div id="idioms-container">
+                    <!-- Idioms will be dynamically generated here -->
+                    <div class="loading">Loading idioms...</div>
+                </div>
+            </div>
+            
+            <div id="fun-facts-tab" class="tab-content">
+                <div class="content-header">
+                    <h3>Fun Facts</h3>
+                    <button id="generate-fun-facts-btn" class="cta-button small">Generate New Fun Facts</button>
+                </div>
+                <div id="fun-facts-container">
+                    <!-- Fun facts will be dynamically generated here -->
+                    <div class="loading">Loading fun facts...</div>
+                </div>
+            </div>
+            
+            <!-- Cultural Item Modal -->
+            <div id="cultural-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <div id="cultural-detail-container"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Language Tandem</h3>
+                    <p>Learn languages together with native speakers.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#profile">Profile</a></li>
+                        <li><a href="#exercises">Exercises</a></li>
+                        <li><a href="#progress">Progress</a></li>
+                        <li><a href="#cultural">Cultural</a></li>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="verify.html">System Verification</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: support@languagetandem.example.com</p>
+                    <p>GitHub: <a href="https://github.com/example/language-tandem">github.com/example/language-tandem</a></p>
+                </div>
+            </div>
+            <p>&copy; 2024 Language Tandem App. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/error-handler.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+    
+    <!-- Page-specific Scripts -->
+    <script src="js/profile.js"></script>
+    <script src="js/exercises.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/cultural.js"></script>
+</body>
+</html> 

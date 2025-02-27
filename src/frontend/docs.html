@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Tandem App - Documentation</title>
+    <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4A90E2;
+            --secondary-color: #5C6BC0;
+            --accent-color: #FF5252;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #757575;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fff;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .back-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        main {
+            padding: 2rem 0;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--medium-gray);
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.75rem;
+            color: var(--text-color);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            font-family: monospace;
+            background-color: var(--light-gray);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9rem;
+        }
+        
+        pre {
+            background-color: var(--light-gray);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+        
+        .note {
+            background-color: #e1f5fe;
+            border-left: 4px solid #03a9f4;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .warning {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        
+        th {
+            background-color: var(--light-gray);
+            font-weight: 500;
+        }
+        
+        tr:hover {
+            background-color: var(--light-gray);
+        }
+        
+        footer {
+            background-color: var(--light-gray);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+            color: var(--dark-gray);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Language Tandem App</div>
+            <a href="index.html" class="back-link">← Back to App</a>
+        </div>
+    </header>
+    
+    <main class="container">
+        <h1>Language Tandem App Documentation</h1>
+        
+        <p>Welcome to the Language Tandem App documentation. This guide will help you understand how to use the application effectively for language learning with a partner.</p>
+        
+        <div class="note">
+            <strong>Note:</strong> This is a prototype version of the application. Some features may be limited or use mock data when the backend is not available.
+        </div>
+        
+        <h2 id="getting-started">Getting Started</h2>
+        
+        <h3>Creating an Account</h3>
+        <p>To use the Language Tandem App, you need to create an account or log in:</p>
+        <ol>
+            <li>Click the "Login" button in the top-right corner of the application.</li>
+            <li>Enter your email address when prompted.</li>
+            <li>If you're a new user, you'll be asked to provide your name.</li>
+            <li>After logging in, you'll be directed to complete your profile.</li>
+        </ol>
+        
+        <h3>Completing Your Profile</h3>
+        <p>A complete profile helps you find suitable language partners:</p>
+        <ol>
+            <li>Navigate to the "Profile" page.</li>
+            <li>Fill in your native language and the language you're learning.</li>
+            <li>Select your proficiency level in the language you're learning.</li>
+            <li>Add your interests and learning goals to help find compatible partners.</li>
+            <li>Click "Save Profile" to update your information.</li>
+        </ol>
+        
+        <h2 id="features">Features</h2>
+        
+        <h3>User Management</h3>
+        <p>The User Management system allows you to:</p>
+        <ul>
+            <li>Create and manage your user profile</li>
+            <li>Specify your native language and the language you're learning</li>
+            <li>Set your proficiency level</li>
+            <li>Add interests and learning goals</li>
+            <li>Find potential language partners based on complementary language skills</li>
+        </ul>
+        
+        <h3>Exercise System</h3>
+        <p>The Exercise System provides various language learning activities:</p>
+        <ul>
+            <li><strong>Flashcards:</strong> Practice vocabulary with digital flashcards</li>
+            <li><strong>Quizzes:</strong> Test your knowledge with multiple-choice questions</li>
+            <li><strong>Conversations:</strong> Practice dialogues with guided conversation prompts</li>
+            <li><strong>Pronunciation:</strong> Improve your pronunciation with speaking exercises</li>
+        </ul>
+        
+        <p>To use exercises:</p>
+        <ol>
+            <li>Navigate to the "Exercises" page.</li>
+            <li>Select an exercise type from the available options.</li>
+            <li>Follow the on-screen instructions to complete the exercise.</li>
+            <li>Submit your answers to receive feedback.</li>
+        </ol>
+        
+        <h3>Progress Tracking</h3>
+        <p>The Progress Tracking feature helps you monitor your language learning journey:</p>
+        <ul>
+            <li>View statistics on completed exercises</li>
+            <li>Track your daily streak of language learning</li>
+            <li>See your progress in different skill areas (vocabulary, grammar, etc.)</li>
+            <li>Set and monitor learning goals</li>
+        </ul>
+        
+        <h3>Cultural Learning</h3>
+        <p>The Cultural Learning section enhances your understanding of the language's cultural context:</p>
+        <ul>
+            <li><strong>Cultural Notes:</strong> Learn about traditions, customs, and cultural practices</li>
+            <li><strong>Idioms:</strong> Discover common expressions and their meanings</li>
+            <li><strong>Fun Facts:</strong> Explore interesting facts about the language and its speakers</li>
+        </ul>
+        
+        <h2 id="offline-mode">Offline Mode</h2>
+        
+        <p>The Language Tandem App includes limited offline functionality:</p>
+        <ul>
+            <li>User data is cached in localStorage for persistence between sessions</li>
+            <li>When the backend is unavailable, the app generates mock data for testing</li>
+            <li>Changes made in offline mode will be synchronized when the connection is restored (in future versions)</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Warning:</strong> Offline mode is primarily for testing purposes. For the best experience, use the application with an active internet connection and backend server.
+        </div>
+        
+        <h2 id="troubleshooting">Troubleshooting</h2>
+        
+        <h3>Common Issues</h3>
+        
+        <table>
+            <tr>
+                <th>Issue</th>
+                <th>Solution</th>
+            </tr>
+            <tr>
+                <td>Cannot log in</td>
+                <td>Check your internet connection. If the backend is unavailable, the app will create a mock user for testing.</td>
+            </tr>
+            <tr>
+                <td>Exercises not loading</td>
+                <td>Verify that you've completed your profile. Some exercises require language preferences to be set.</td>
+            </tr>
+            <tr>
+                <td>Progress not saving</td>
+                <td>Ensure you're logged in and have an active internet connection. In offline mode, progress is stored locally.</td>
+            </tr>
+            <tr>
+                <td>UI display issues</td>
+                <td>Try refreshing the page or clearing your browser cache. The app works best in modern browsers like Chrome, Firefox, or Edge.</td>
+            </tr>
+        </table>
+        
+        <h3>Clearing Local Storage</h3>
+        <p>If you encounter persistent issues, you may want to clear the application's local storage:</p>
+        <ol>
+            <li>Open your browser's developer tools (F12 or right-click and select "Inspect")</li>
+            <li>Navigate to the "Application" or "Storage" tab</li>
+            <li>Select "Local Storage" and find the entry for this application</li>
+            <li>Click "Clear" or delete specific items</li>
+            <li>Refresh the page</li>
+        </ol>
+        
+        <h2 id="contact">Contact & Support</h2>
+        
+        <p>For questions, feedback, or support, please contact us at:</p>
+        <ul>
+            <li>Email: support@languagetandem.example.com</li>
+            <li>GitHub: <a href="https://github.com/example/language-tandem">github.com/example/language-tandem</a></li>
+        </ul>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Language Tandem App. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html> 

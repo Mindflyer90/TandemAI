@@ -1,0 +1,12 @@
+# robots.txt for Language Tandem App
+
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /docs.html
+
+# Disallow test and development files
+Disallow: /test.html
+
+# Sitemap
+Sitemap: https://example.com/sitemap.xml 

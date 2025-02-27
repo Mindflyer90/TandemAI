@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Tandem App - System Verification</title>
+    <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4A90E2;
+            --secondary-color: #5C6BC0;
+            --accent-color: #FF5252;
+            --success-color: #34A853;
+            --warning-color: #FBBC05;
+            --error-color: #EA4335;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .status-item:last-child {
+            border-bottom: none;
+        }
+        
+        .status-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .status-success {
+            background-color: var(--success-color);
+        }
+        
+        .status-warning {
+            background-color: var(--warning-color);
+        }
+        
+        .status-error {
+            background-color: var(--error-color);
+        }
+        
+        .status-checking {
+            background-color: var(--secondary-color);
+        }
+        
+        .status-name {
+            font-weight: 500;
+            flex: 1;
+        }
+        
+        .status-message {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        
+        .primary-button {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .primary-button:hover {
+            background-color: #3a78c2;
+        }
+        
+        .secondary-button {
+            background-color: #f5f5f5;
+            color: var(--text-color);
+        }
+        
+        .secondary-button:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Language Tandem App - System Verification</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="card">
+            <h2>Component Status</h2>
+            <div id="status-container">
+                <!-- Status items will be added here -->
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Configuration</h2>
+            <div id="config-container">
+                <!-- Config info will be added here -->
+            </div>
+        </div>
+        
+        <div class="button-container">
+            <a href="index.html" class="button secondary-button">Back to App</a>
+            <button id="verify-button" class="button primary-button">Run Verification</button>
+        </div>
+    </div>
+    
+    <!-- Load core scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/error-handler.js"></script>
+    <script src="js/api.js"></script>
+    
+    <script>
+        // Component checklist
+        const components = [
+            { name: 'Configuration (config.js)', test: () => typeof CONFIG !== 'undefined' },
+            { name: 'Utilities (utils.js)', test: () => typeof Utils !== 'undefined' },
+            { name: 'Error Handler (error-handler.js)', test: () => typeof ErrorHandler !== 'undefined' },
+            { name: 'API Utilities (api.js)', test: () => typeof API !== 'undefined' },
+            { name: 'CSS Styles', test: () => {
+                const styles = document.styleSheets;
+                return Array.from(styles).some(sheet => 
+                    sheet.href && (sheet.href.includes('styles.css') || sheet.href.includes('roboto'))
+                );
+            }},
+            { name: 'Local Storage', test: () => {
+                try {
+                    localStorage.setItem('test', 'test');
+                    localStorage.removeItem('test');
+                    return true;
+                } catch (e) {
+                    return false;
+                }
+            }},
+            { name: 'Favicon', test: () => {
+                const links = document.querySelectorAll('link[rel="icon"]');
+                return links.length > 0;
+            }},
+            { name: 'API Connection', test: async () => {
+                try {
+                    // Just check if the API_URL is configured, don't actually make a request
+                    return typeof CONFIG !== 'undefined' && CONFIG.API_URL && CONFIG.API_URL.trim() !== '';
+                } catch (e) {
+                    return false;
+                }
+            }}
+        ];
+        
+        // Initialize status items
+        function initializeStatusItems() {
+            const container = document.getElementById('status-container');
+            container.innerHTML = '';
+            
+            components.forEach((component, index) => {
+                const statusItem = document.createElement('div');
+                statusItem.className = 'status-item';
+                statusItem.id = `status-${index}`;
+                
+                const statusIcon = document.createElement('div');
+                statusIcon.className = 'status-icon status-checking';
+                statusIcon.innerHTML = '?';
+                
+                const statusName = document.createElement('div');
+                statusName.className = 'status-name';
+                statusName.textContent = component.name;
+                
+                const statusMessage = document.createElement('div');
+                statusMessage.className = 'status-message';
+                statusMessage.textContent = 'Checking...';
+                
+                statusItem.appendChild(statusIcon);
+                statusItem.appendChild(statusName);
+                statusItem.appendChild(statusMessage);
+                
+                container.appendChild(statusItem);
+            });
+        }
+        
+        // Update a status item
+        function updateStatus(index, success, message) {
+            const statusItem = document.getElementById(`status-${index}`);
+            if (!statusItem) return;
+            
+            const statusIcon = statusItem.querySelector('.status-icon');
+            const statusMessage = statusItem.querySelector('.status-message');
+            
+            if (success === true) {
+                statusIcon.className = 'status-icon status-success';
+                statusIcon.innerHTML = '✓';
+                statusMessage.textContent = message || 'OK';
+            } else if (success === false) {
+                statusIcon.className = 'status-icon status-error';
+                statusIcon.innerHTML = '✗';
+                statusMessage.textContent = message || 'Failed';
+            } else if (success === 'warning') {
+                statusIcon.className = 'status-icon status-warning';
+                statusIcon.innerHTML = '!';
+                statusMessage.textContent = message || 'Warning';
+            }
+        }
+        
+        // Display configuration information
+        function displayConfigInfo() {
+            const container = document.getElementById('config-container');
+            container.innerHTML = '';
+            
+            if (typeof CONFIG === 'undefined') {
+                container.textContent = 'Configuration not loaded.';
+                return;
+            }
+            
+            // Display API URL
+            const apiItem = document.createElement('div');
+            apiItem.className = 'status-item';
+            
+            const apiName = document.createElement('div');
+            apiName.className = 'status-name';
+            apiName.textContent = 'API URL';
+            
+            const apiValue = document.createElement('div');
+            apiValue.className = 'status-message';
+            apiValue.textContent = CONFIG.API_URL;
+            
+            apiItem.appendChild(apiName);
+            apiItem.appendChild(apiValue);
+            container.appendChild(apiItem);
+            
+            // Display language count
+            const langItem = document.createElement('div');
+            langItem.className = 'status-item';
+            
+            const langName = document.createElement('div');
+            langName.className = 'status-name';
+            langName.textContent = 'Languages';
+            
+            const langValue = document.createElement('div');
+            langValue.className = 'status-message';
+            langValue.textContent = `${CONFIG.LANGUAGES.length} languages configured`;
+            
+            langItem.appendChild(langName);
+            langItem.appendChild(langValue);
+            container.appendChild(langItem);
+            
+            // Display storage keys
+            const storageItem = document.createElement('div');
+            storageItem.className = 'status-item';
+            
+            const storageName = document.createElement('div');
+            storageName.className = 'status-name';
+            storageName.textContent = 'Storage Keys';
+            
+            const storageValue = document.createElement('div');
+            storageValue.className = 'status-message';
+            storageValue.textContent = `${Object.keys(CONFIG.STORAGE_KEYS).length} storage keys configured`;
+            
+            storageItem.appendChild(storageName);
+            storageItem.appendChild(storageValue);
+            container.appendChild(storageItem);
+        }
+        
+        // Run verification tests
+        async function runVerification() {
+            initializeStatusItems();
+            
+            for (let i = 0; i < components.length; i++) {
+                try {
+                    const result = components[i].test();
+                    if (result instanceof Promise) {
+                        const asyncResult = await result;
+                        updateStatus(i, asyncResult, asyncResult ? 'OK' : 'Failed');
+                    } else {
+                        updateStatus(i, result, result ? 'OK' : 'Failed');
+                    }
+                } catch (error) {
+                    updateStatus(i, false, error.message);
+                }
+            }
+            
+            displayConfigInfo();
+        }
+        
+        // Initialize verification on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('verify-button').addEventListener('click', runVerification);
+            runVerification();
+        });
+    </script>
+</body>
+</html> 
