@@ -5,6 +5,7 @@ from ..models.user import Language
 from ..services.storage_service import StorageService
 from ..services.cultural_service import CulturalService
 from ..services.llm_service import LLMService
+import os
 
 router = APIRouter(prefix="/cultural", tags=["cultural"])
 
@@ -12,8 +13,10 @@ def get_storage_service():
     return StorageService()
 
 def get_llm_service():
-    # In a real app, these would be loaded from environment variables
-    return LLMService(openai_api_key="sk-dummy", gemini_api_key="ai-dummy")
+    return LLMService(
+        openai_api_key=os.environ.get("OPENAI_API_KEY"),
+        gemini_api_key=os.environ.get("GEMINI_API_KEY")
+    )
 
 def get_cultural_service(
     storage: StorageService = Depends(get_storage_service),
